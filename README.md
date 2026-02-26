@@ -24,3 +24,21 @@ Edit `employees.json` and add a new object:
 ## Notes
 QR codes are generated using a hosted QR image endpoint.
 If you want fully-offline QR generation later, we can swap in a tiny local JS QR library.
+
+
+## Editing employee info (CSV)
+Employee data is loaded from `employees.csv` (preferred) so you can edit it in Excel / Google Sheets.
+
+- File: `employees.csv`
+- Required column: `id` (used in the URL like `?u=jessica-flanders`)
+- Recommended columns:
+  - `name`, `title`, `email`, `phone`, `ext`, `website`
+  - `photo` (leave blank to use the building photo)
+  - `fallbackPhoto` (optional; default is `./assets/building.jpg`)
+  - `location`, `dept` (optional)
+
+### Add/Update photos
+1. Drop the headshot into `/assets/` (jpg/png).
+2. In `employees.csv`, set `photo` to `./assets/<filename>`.
+
+> Note: If you previously used `employees.json`, it still works as a fallback, but CSV is what the app will try first.
