@@ -340,12 +340,7 @@ body{
   touch-action: manipulation;
 }
 
-/* Use the actual SVG images as the icons (no extra “icon inside icon” styling) */
-.mob-ico{
-  width: 28px;
-  height: 28px;
-  display: block;
-}
+
 
 /* Prevent content from sitting under the floating bar */
 @media (max-width: 899px){
