@@ -573,3 +573,52 @@ body.force-mobile .mob-shell{
   width: 26px;
   height: 26px;
 }
+/* ===== Mobile action bar sizing + icon scaling ===== */
+
+.mob-actionbar{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background: transparent !important;
+  box-shadow:none !important;
+  border:0 !important;
+  padding:0 !important;
+}
+
+/* Make circles + pill same height */
+.mob-icon-btn,
+.mob-pill-btn{
+  height:64px;
+}
+
+/* Round icon buttons */
+.mob-icon-btn{
+  width:64px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+}
+
+/* Make icons actually fill the button */
+.mob-icon-btn .mob-ico,
+.mob-pill-btn .mob-ico{
+  width:30px;
+  height:30px;
+}
+
+/* Pill button matches height + fills remaining space */
+.mob-pill-btn{
+  flex:1;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:0 20px;
+}
+.mob-logo{
+  width:min(240px, 75vw);
+  height:auto;
+}
