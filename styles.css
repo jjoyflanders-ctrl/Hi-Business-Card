@@ -530,44 +530,58 @@ body.force-mobile .mob-shell{
 @media (min-width: 900px){
   .mob-actionbar{ display:none; }
 }
-/* ===== MOBILE ACTION BAR FIX ===== */
+/* ===== MOBILE POLISH: LOGO + FLOATING BAR ===== */
 
-/* Remove floating tray background */
-.actionBar,
-.floatingBar,
-.quickActions {
+/* Bigger Highlight logo */
+.mob-logo{
+  width: min(240px, 78vw) !important; /* increase/decrease as you like */
+  height: auto !important;
+}
+
+/* Remove the “tray/background” behind the floating buttons */
+.mob-actionbar{
   background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
   border: 0 !important;
   padding: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* Bigger round icon buttons */
-.iconBtn {
-  width: 56px !important;
-  height: 56px !important;
-  border-radius: 999px;
+/* Make the 2 round icon buttons clean + bigger */
+.mob-icon-btn{
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 999px !important;
   padding: 0 !important;
+  background: #fff !important;          /* keep as white circles */
+  box-shadow: 0 10px 25px rgba(0,0,0,.18) !important;
+  border: 0 !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Make icons inside bigger */
-.iconBtn svg,
-.iconBtn img {
-  width: 26px !important;
-  height: 26px !important;
-}
-
-/* Fix “icon inside icon” look */
-.iconBtn * {
+/* Make the icons bigger (and remove “icon inside icon” look) */
+.mob-ico{
+  width: 28px !important;
+  height: 28px !important;
   background: transparent !important;
-  box-shadow: none !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-/* Bigger Highlight logo */
-.brandLogo img {
-  width: min(220px, 75vw) !important;
-  height: auto;
+/* Pill button stays pill, but sized to match the circles */
+.mob-pill-btn{
+  height: 58px !important;
+  border-radius: 999px !important;
+  border: 0 !important;
+  padding: 0 18px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,.18) !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
 }
