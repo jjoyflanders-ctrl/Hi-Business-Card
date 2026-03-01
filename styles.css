@@ -667,4 +667,17 @@ body.force-mobile .mob-shell{
   height: 30px;
   color: #ffffff;
 }
+/* ===== Make all three action buttons match ===== */
+
+/* Dark gray background for circle buttons */
+.mob-icon-btn{
+  background: #3b3b3b !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+}
+
+/* Make ALL icons white */
+.mob-icon-btn svg,
+.mob-pill-btn svg{
+  color: #ffffff !important;
+}
 
