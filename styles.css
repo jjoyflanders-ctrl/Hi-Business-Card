@@ -621,4 +621,4 @@ body.force-mobile .mob-shell{
 .mob-logo{
   width:min(240px, 75vw);
   height:auto;
-}
+}body { outline: 10px solid hotpink !important; }
