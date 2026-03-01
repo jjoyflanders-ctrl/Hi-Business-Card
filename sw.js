@@ -1,4 +1,4 @@
-const CACHE = "highlight-digital-card-v7";
+const CACHE = "highlight-digital-card-v9";
 const ASSETS = [
   "./",
   "./index.html",
