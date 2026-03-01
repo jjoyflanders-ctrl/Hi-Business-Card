@@ -534,3 +534,42 @@ body.force-mobile .mob-shell{
 @media (max-width: 899px){
   .desk-header, .desk-card{ display:none; }
 }
+.actionsRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.iconBtn,
+.pillBtn {
+  height: 64px;   /* this controls EVERYTHING */
+}
+.iconBtn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconBtn svg,
+.iconBtn img {
+  width: 30px;
+  height: 30px;
+}
+.pillBtn {
+  flex: 1;             /* fills remaining space */
+  height: 64px;
+  border-radius: 999px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.pillBtn svg,
+.pillBtn img {
+  width: 26px;
+  height: 26px;
+}
