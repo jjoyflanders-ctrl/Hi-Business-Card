@@ -617,8 +617,47 @@ body.force-mobile .mob-shell{
   justify-content:center;
   gap:10px;
   padding:0 20px;
+}/* ===== FINAL: Mobile action bar sizing (strong override) ===== */
+
+.mob-actionbar{
+  gap: 14px !important;
 }
+
+/* Make circles + pill the same “big” height */
+.mob-icon-btn,
+.mob-pill-btn{
+  height: 72px !important;
+}
+
+/* Round icon buttons: match height with width */
+.mob-icon-btn{
+  width: 72px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+/* Icons: BIG */
+.mob-ico{
+  width: 38px !important;
+  height: 38px !important;
+  display: block !important;
+}
+
+/* Pill: same height as circles */
+.mob-pill-btn{
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 0 22px !important;
+}
+
+/* Bigger logo (yours was already big — this pushes it more) */
 .mob-logo{
-  width:min(240px, 75vw);
-  height:auto;
-}body { outline: 10px solid hotpink !important; }
+  width: min(380px, 94vw) !important;
+  height: auto !important;
+}
+
