@@ -353,12 +353,16 @@ function wireDesktopControls() {
   }
 
   if (els.sendBtnDesk && els.sendModal) {
-    els.sendBtnDesk.addEventListener("click", () => {
-      if (!current) return;
-      setQr(els.qrDesk, mobileShareUrl(current.id));
-      els.sendModal.showModal?.();
-    });
-  }
+  els.sendBtnDesk.addEventListener("click", () => {
+    if (!current) return;
+
+    // Desktop should show QR
+    els.sendModal.classList.remove("no-qr");
+
+    setQr(els.qrDesk, mobileShareUrl(current.id));
+    els.sendModal.showModal?.();
+  });
+}
 
   // Modal share buttons
   els.nativeShareBtn?.addEventListener("click", async () => {
