@@ -251,6 +251,10 @@ body{
   font-size: 44px;
   margin: 0;
   letter-spacing:.4px;
+  line-height: 1.05;
+  white-space: normal;          /* allow wrapping */
+  word-break: keep-all;         /* don't break mid-word */
+  overflow-wrap: anywhere;      /* wrap cleanly if truly needed */
 }
 .mob-title{
   font-size: 26px;
