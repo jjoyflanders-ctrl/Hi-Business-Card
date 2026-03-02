@@ -529,192 +529,83 @@ body.force-mobile .mob-shell{
 @media (max-width: 899px){
   .desk-header, .desk-card{ display:none; }
 }
-.actionsRow {
+/* ================================
+   MOBILE FLOATING ACTION BAR (FINAL)
+   64px, Highlight Green, inline SVG
+   ================================ */
+
+.mob-actionbar{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
   gap: 14px;
-}
-
-.iconBtn,
-.pillBtn {
-  height: 64px;   /* this controls EVERYTHING */
-}
-.iconBtn {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 50;
 }
-.iconBtn svg,
-.iconBtn img {
-  width: 30px;
-  height: 30px;
-}
-.pillBtn {
-  flex: 1;             /* fills remaining space */
+
+/* All action buttons share the same look */
+.mob-icon-btn,
+.mob-pill-btn{
   height: 64px;
+  border: 0;
   border-radius: 999px;
-  padding: 0 20px;
+  background: var(--hi-green);
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Circle buttons */
+.mob-icon-btn{
+  width: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-}
-.pillBtn svg,
-.pillBtn img {
-  width: 26px;
-  height: 26px;
-}
-/* ===== Mobile action bar sizing + icon scaling ===== */
-
-.mob-actionbar{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background: transparent !important;
-  box-shadow:none !important;
-  border:0 !important;
-  padding:0 !important;
+  padding: 0;
 }
 
-/* Make circles + pill same height */
-.mob-icon-btn,
+/* Pill button */
 .mob-pill-btn{
-  height:64px;
-}
-
-/* Round icon buttons */
-.mob-icon-btn{
-  width:64px;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0;
-}
-
-/* Make icons actually fill the button */
-.mob-icon-btn .mob-ico,
-.mob-pill-btn .mob-ico{
-  width:30px;
-  height:30px;
-}
-
-/* Pill button matches height + fills remaining space */
-.mob-pill-btn{
-  flex:1;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:0 20px;
-}/* ===== FINAL: Mobile action bar sizing (strong override) ===== */
-
-.mob-actionbar{
-  gap: 14px !important;
-}
-
-/* Make circles + pill the same “big” height */
-.mob-icon-btn,
-.mob-pill-btn{
-  height: 72px !important;
-}
-
-/* Round icon buttons: match height with width */
-.mob-icon-btn{
-  width: 72px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-}
-
-/* Icons: BIG */
-.mob-ico{
-  width: 38px !important;
-  height: 38px !important;
-  display: block !important;
-}
-
-/* Pill: same height as circles */
-.mob-pill-btn{
-  flex: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  padding: 0 22px !important;
-}
-
-/* Bigger logo (yours was already big — this pushes it more) */
-.mob-logo{
-  width: min(380px, 94vw) !important;
-  height: auto !important;
-}
-/* Inline SVG sizing */
-.mob-icon-btn svg{
-  width: 38px;
-  height: 38px;
-  color: #1f1f1f;
-}
-
-.mob-pill-btn svg{
-  width: 30px;
-  height: 30px;
-  color: #ffffff;
-}
-/* ===== Make all three action buttons match ===== */
-
-/* Dark gray background for circle buttons */
-.mob-icon-btn{
-  background: #3b3b3b !important;
-  box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
-}
-
-/* Make ALL icons white */
-.mob-icon-btn svg,
-.mob-pill-btn svg{
-  color: #ffffff !important;
-}
-/* ===== FINAL LOCKED: 64px Highlight Green Floating Buttons ===== */
-
-.mob-icon-btn,
-.mob-pill-btn{
-  height: 64px !important;
-  background: var(--hi-green) !important;
-}
-
-.mob-icon-btn{
-  width: 64px !important;
-  border-radius: 999px;
-}
-
-.mob-icon-btn svg{
-  width: 34px !important;
-  height: 34px !important;
-  color: #ffffff !important;
-}
-
-.mob-pill-btn{
-  flex: 1 !important;
-  border-radius: 999px;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 0 20px !important;
+  padding: 0 20px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
 }
 
+/* Inline SVG icons */
+.mob-icon-btn svg{
+  width: 34px;
+  height: 34px;
+  color: #fff;
+  display:block;
+}
 .mob-pill-btn svg{
-  width: 28px !important;
-  height: 28px !important;
-  color: #ffffff !important;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  display:block;
 }
-
-.mob-pill-btn span{
-  color: #ffffff !important;
+/* If you're still using <img class="mob-ico"> icons */
+.mob-ico{
+  width: 34px;
+  height: 34px;
+  display:block;
+  filter: brightness(0) invert(1); /* makes dark icons white */
+}
+.mob-pill-btn .mob-ico{
+  width: 28px;
+  height: 28px;
 }
