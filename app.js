@@ -414,12 +414,13 @@ function wireMobileControls() {
 
     if (ok) return;
 
-    // Fallback: show the send modal with a mobile-forced QR
-    if (els.sendModal) {
-      const qrUrl = mobileShareUrl(current.id);
-      setQr(els.qrDesk, qrUrl);
-      els.sendModal.showModal?.();
-    } else {
+  // Fallback: show the share modal WITHOUT QR on mobile
+if (els.sendModal) {
+  els.sendModal.classList.add("no-qr");
+  els.sendModal.showModal?.();
+} else {
+  await copyToClipboard(shareUrl);
+} else {
       await copyToClipboard(shareUrl);
     }
   });
