@@ -171,7 +171,7 @@ body{
   display: flex;
   gap: 12px;
 
-  margin-top: 45px;   /* controls vertical placement */
+  margin-top: 43px;   /* controls vertical placement */
 }
 .tiny-note{ margin-top: 18px; color:#666; font-size: 13px; line-height:1.35; max-width: 520px; }
 
