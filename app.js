@@ -84,6 +84,7 @@ function isForcedMobile() {
 }
 
 function canonicalUrlForEmployee(id, view) {
+  // Internal URL (GitHub iframe URL). Used for history/inside-app nav.
   const url = new URL(location.href);
   url.searchParams.set("u", id);
   if (view) url.searchParams.set("view", view);
@@ -91,9 +92,38 @@ function canonicalUrlForEmployee(id, view) {
   return url.toString();
 }
 
+function getPublicBaseUrl() {
+  // If provided (from Shopify), QR/share links should use this base URL instead of GitHub.
+  const base = qs().get("base");
+  if (!base) return null;
+  try {
+    // Validate it’s a real absolute URL
+    const u = new URL(base);
+    return u.toString();
+  } catch {
+    return null;
+  }
+}
+
+function publicUrlForEmployee(id, view) {
+  // Public URL (what clients should see). Defaults to GitHub if no base= passed.
+  const base = getPublicBaseUrl();
+  if (!base) return canonicalUrlForEmployee(id, view);
+
+  const url = new URL(base);
+  url.searchParams.set("u", id);
+
+  // Only include view=mobile when requested
+  if (view) url.searchParams.set("view", view);
+  else url.searchParams.delete("view");
+
+  return url.toString();
+}
+
 function mobileShareUrl(id) {
-  // Always force mobile for QR links
-  return canonicalUrlForEmployee(id, "mobile");
+  // Always force mobile for QR/share links
+  return publicUrlForEmployee(id, "mobile");
+}
 }
 
 function setForceMobile(flag) {
@@ -542,6 +572,10 @@ function pickAndRenderInitialEmployee() {
 }
 
 function registerServiceWorker() {
+  // IMPORTANT: Don’t register SW when embedded in Shopify (base=...)
+  // This prevents “nothing updates” caching headaches for clients + you.
+  if (qs().get("base")) return;
+
   if (!("serviceWorker" in navigator)) return;
   navigator.serviceWorker.register("./sw.js").catch(() => {});
 }
