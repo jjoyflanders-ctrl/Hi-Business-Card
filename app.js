@@ -126,7 +126,7 @@ function mobileShareUrl(id) {
   return publicUrlForEmployee(id, "mobile");
 }
 
-function setForceMobilefunction setForceMobile(flag) {
+function setForceMobile(flag) {
   document.body.classList.toggle("force-mobile", !!flag);
 }
 
@@ -370,10 +370,10 @@ function wireDesktopControls() {
     if (!ok) toast("Sharing not supported here. Try Copy Link.");
   });
 
-  els.copyLinkBtn?.addEventListener("click", async () => {
-    if (!current) return;
-    await copyToClipboard(mobileShareUrl(current.id));
-  });
+ els.copyLinkBtn?.addEventListener("click", async () => {
+  if (!current) return;
+  await copyToClipboard(publicProfileUrl(current.id));
+});
 
   els.textLinkBtn?.addEventListener("click", () => {
     if (!current) return;
@@ -398,12 +398,10 @@ function wireMobileControls() {
     downloadTextFile(`${current.id}.vcf`, vcardFor(current), "text/vcard;charset=utf-8");
   });
 
-  // Mobile share: try native share first (AirDrop/Messages/Mail on iOS/macOS Safari),
-  // otherwise fall back to the same share modal used on desktop.
-    els.shareBtnMob?.addEventListener("click", async () => {
+  // Share button: share the PUBLIC (Shopify) responsive link when base= exists.
+  els.shareBtnMob?.addEventListener("click", async () => {
     if (!current) return;
 
-    // Share the responsive (public) link so it works on both desktop + mobile.
     const shareUrl = publicProfileUrl(current.id);
 
     const ok = await nativeShare({
@@ -411,25 +409,16 @@ function wireMobileControls() {
       text: `${current.name} — ${current.title}`,
       url: shareUrl,
     });
+
     if (ok) return;
 
-    // Fallback: show the share modal with a mobile-forced QR
+    // Fallback: show the send modal with a mobile-forced QR
     if (els.sendModal) {
       const qrUrl = mobileShareUrl(current.id);
       setQr(els.qrDesk, qrUrl);
       els.sendModal.showModal?.();
     } else {
       await copyToClipboard(shareUrl);
-    }
-  });
-    if (ok) return;
-
-    // Fallback: show the share modal
-    if (els.sendModal) {
-      setQr(els.qrDesk, url);
-      els.sendModal.showModal?.();
-    } else {
-      await copyToClipboard(url);
     }
   });
 
