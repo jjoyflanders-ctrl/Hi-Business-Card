@@ -612,3 +612,5 @@ body.force-mobile .mob-shell{
   width: 28px;
   height: 28px;
 }
+.desk-cta { outline: 6px solid hotpink !important; }
+
