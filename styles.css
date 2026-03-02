@@ -207,9 +207,9 @@ body{
   pointer-events:none;
 }
 .mob-logo{
-  width: min(340px, 92%);
+  width: min(380px, 92%);
   display:block;
-  margin: 4px auto 14px;
+  margin: 6px auto 18px;
   height:auto;
 }
 .mob-photo-wrap{
