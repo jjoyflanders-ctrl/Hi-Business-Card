@@ -611,5 +611,34 @@ body.force-mobile .mob-shell{
   width: 28px;
   height: 28px;
 }
+/* ===== Fix "Share this contact" modal on mobile ===== */
+
+/* Let the modal scroll internally if needed */
+#sendModal .modal-inner{
+  max-height: min(86vh, 760px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* On mobile, use 1-column layout and hide the QR panel */
+@media (max-width: 600px){
+  #sendModal .modal-grid{
+    grid-template-columns: 1fr;
+  }
+  #sendModal .qr-panel{
+    display: none !important;
+  }
+  #sendModal .modal-title{
+    font-size: 28px;
+  }
+}
+
+/* Optional: if we apply a class to force-hide QR anywhere */
+#sendModal.no-qr .qr-panel{
+  display: none !important;
+}
+#sendModal.no-qr .modal-grid{
+  grid-template-columns: 1fr !important;
+}
 
 
