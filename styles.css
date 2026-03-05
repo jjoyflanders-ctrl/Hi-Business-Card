@@ -630,3 +630,11 @@ body.force-mobile .mob-shell{
 .mob-btn-row {
   display: none !important;
 }
+/* Hide the original mobile action buttons */
+.mob-main .mob-actions,
+.mob-main .mob-cta,
+.mob-main .mob-btns,
+.mob-main .mob-buttons,
+.mob-main .mob-btn-row {
+  display: none !important;
+}
