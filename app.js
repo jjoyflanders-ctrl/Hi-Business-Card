@@ -195,8 +195,15 @@ function renderEmployee(emp) {
 
   // Mobile links
   setLink(els.emailLinkMob, emp.email ? `mailto:${emp.email}` : "#");
-  setLink(els.phoneLinkMob, emp.phone ? `tel:${emp.phone}` : "#");
   setLink(els.webLinkMob, emp.website || "#");
+
+  // clean phone number (removes spaces, (), -, etc.)
+  const cleanPhone = (emp.phone || "").toString().replace(/[^\d+]/g, "");
+  setLink(els.phoneLinkMob, cleanPhone ? `tel:${cleanPhone}` : "#");
+
+  // force call/email to escape the Shopify iframe
+  if (els.emailLinkMob) els.emailLinkMob.target = "_top";
+  if (els.phoneLinkMob) els.phoneLinkMob.target = "_top";
 
   // force mobile actions to escape iframe
   if (els.emailLinkMob) els.emailLinkMob.target = "_top";
