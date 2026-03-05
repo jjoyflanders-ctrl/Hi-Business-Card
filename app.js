@@ -198,6 +198,10 @@ function renderEmployee(emp) {
   setLink(els.phoneLinkMob, emp.phone ? `tel:${emp.phone}` : "#");
   setLink(els.webLinkMob, emp.website || "#");
 
+  // force mobile actions to escape iframe
+  if (els.emailLinkMob) els.emailLinkMob.target = "_top";
+  if (els.phoneLinkMob) els.phoneLinkMob.target = "_top";
+
   // Mobile photo
   setImg(els.photoMob, photoSrc, `${emp.name || "Employee"} photo`);
 
