@@ -169,6 +169,13 @@ function setQr(imgEl, url) {
 
 function renderEmployee(emp) {
   current = emp;
+   // Tell Shopify (parent) what phone number is active (for iPhone call button)
+try {
+  window.parent.postMessage(
+    { type: "EMPLOYEE_PHONE", phone: emp.phone || "" },
+    "*"
+  );
+} catch (e) {}
 
   // Desktop text
   if (els.nameDesk) els.nameDesk.textContent = emp.name || "—";
@@ -193,35 +200,18 @@ function renderEmployee(emp) {
   if (els.phoneMob) els.phoneMob.textContent = buildPhoneDisplay(emp);
   if (els.webMob) els.webMob.textContent = emp.website ? new URL(emp.website).hostname : "—";
 
-  // Mobile links
+ // Mobile links
 setLink(els.emailLinkMob, emp.email ? `mailto:${emp.email}` : "#");
 setLink(els.webLinkMob, emp.website || "#");
 
-// ✅ Phone (clean the number)
+// basic phone link (works on Android)
 const cleanPhone = (emp.phone || "").toString().replace(/[^\d+]/g, "");
 setLink(els.phoneLinkMob, cleanPhone ? `tel:${cleanPhone}` : "#");
 
-// escape iframe
+// allow email + website to open outside iframe
 if (els.emailLinkMob) els.emailLinkMob.target = "_top";
-
-if (els.phoneLinkMob) {
-  els.phoneLinkMob.target = "_top";
-
-  // force top-level navigation (fixes iPhone/Safari + iframe)
-  els.phoneLinkMob.onclick = function (e) {
-    if (!cleanPhone) return;
-    e.preventDefault();
-    window.top.location.href = "tel:" + cleanPhone;
-  };
-}
-
-  // force call/email to escape the Shopify iframe
-  if (els.emailLinkMob) els.emailLinkMob.target = "_top";
-  if (els.phoneLinkMob) els.phoneLinkMob.target = "_top";
-
-  // force mobile actions to escape iframe
-  if (els.emailLinkMob) els.emailLinkMob.target = "_top";
-  if (els.phoneLinkMob) els.phoneLinkMob.target = "_top";
+if (els.webLinkMob) els.webLinkMob.target = "_top";
+   if (els.phoneLinkMob) els.phoneLinkMob.target = "_top";
 
   // Mobile photo
   setImg(els.photoMob, photoSrc, `${emp.name || "Employee"} photo`);
