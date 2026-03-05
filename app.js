@@ -194,12 +194,26 @@ function renderEmployee(emp) {
   if (els.webMob) els.webMob.textContent = emp.website ? new URL(emp.website).hostname : "—";
 
   // Mobile links
-  setLink(els.emailLinkMob, emp.email ? `mailto:${emp.email}` : "#");
-  setLink(els.webLinkMob, emp.website || "#");
+setLink(els.emailLinkMob, emp.email ? `mailto:${emp.email}` : "#");
+setLink(els.webLinkMob, emp.website || "#");
 
-  // clean phone number (removes spaces, (), -, etc.)
-  const cleanPhone = (emp.phone || "").toString().replace(/[^\d+]/g, "");
-  setLink(els.phoneLinkMob, cleanPhone ? `tel:${cleanPhone}` : "#");
+// ✅ Phone (clean the number)
+const cleanPhone = (emp.phone || "").toString().replace(/[^\d+]/g, "");
+setLink(els.phoneLinkMob, cleanPhone ? `tel:${cleanPhone}` : "#");
+
+// escape iframe
+if (els.emailLinkMob) els.emailLinkMob.target = "_top";
+
+if (els.phoneLinkMob) {
+  els.phoneLinkMob.target = "_top";
+
+  // force top-level navigation (fixes iPhone/Safari + iframe)
+  els.phoneLinkMob.onclick = function (e) {
+    if (!cleanPhone) return;
+    e.preventDefault();
+    window.top.location.href = "tel:" + cleanPhone;
+  };
+}
 
   // force call/email to escape the Shopify iframe
   if (els.emailLinkMob) els.emailLinkMob.target = "_top";
