@@ -638,3 +638,6 @@ body.force-mobile .mob-shell{
 .mob-main .mob-btn-row {
   display: none !important;
 }
+.mob-main button{
+  display:none !important;
+}
