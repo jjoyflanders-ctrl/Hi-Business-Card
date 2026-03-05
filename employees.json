@@ -1,28 +1,28 @@
 [
   {
-    "id": "jessica-flanders",
+    "id": "jessica-f",
     "name": "Jessica Flanders",
-    "title": "E‑Commerce & Inventory Administrator",
-    "email": "jessica.flanders@highlightindustries.com",
+    "title": "Communications Coordinator",
+    "email": "jessicaf@highlightindustries.com",
     "phone": "+1-616-531-2464",
-    "ext": "242",
+    "ext": "608",
     "website": "https://www.highlightindustries.com",
     "photo": "./assets/jessica-flanders.jpg",
     "fallbackPhoto": "./assets/building.jpg",
     "location": "Grand Rapids, MI",
-    "dept": "E‑Commerce / Operations"
+    "dept": "Marketing / Accounting"
   },
   {
-    "id": "taryn-swayze",
+    "id": "taryn-s",
     "name": "Taryn Swayze",
     "title": "Packaging Engineer",
     "email": "taryns@highlightindustries.com",
     "phone": "+1-616-531-2464",
-    "ext": "2422",
+    "ext": "242",
     "website": "https://www.highlightindustries.com",
     "photo": null,
     "fallbackPhoto": "./assets/building.jpg",
     "location": "Grand Rapids, MI",
-    "dept": "Engineering"
+    "dept": 
   }
 ]
