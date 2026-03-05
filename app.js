@@ -82,7 +82,8 @@ function qs() {
 }
 
 function getSelectedId() {
-  return qs().get("u") || "jessica-f";
+  const hashId = (window.location.hash || "").replace("#", "").trim();
+  return hashId || qs().get("u") || "jessica-f";
 }
 
 function isForcedMobile() {
@@ -114,10 +115,12 @@ function publicUrlForEmployee(id, view) {
   const base = getPublicBaseUrl();
   const url = base ? new URL(base) : new URL(location.href);
 
-  url.searchParams.set("u", id);
-
+  // Optional: keep view param if you still use it
   if (view) url.searchParams.set("view", view);
   else url.searchParams.delete("view");
+
+  // ✅ Use hash instead of ?u=
+  url.hash = encodeURIComponent(id);
 
   return url.toString();
 }
@@ -128,8 +131,8 @@ function publicProfileUrl(id) {
 }
 
 function mobileShareUrl(id) {
-  // Use for QR codes / "send to phone" so it always opens in the mobile layout
-  return publicUrlForEmployee(id, "mobile");
+  // ✅ Clean QR link: /connect#employee-id
+  return publicUrlForEmployee(id, null);
 }
 
 function setForceMobile(flag) {
