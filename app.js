@@ -82,7 +82,7 @@ function qs() {
 }
 
 function getSelectedId() {
-  return qs().get("u") || "jessica-flanders";
+  return qs().get("u") || "jessica-f";
 }
 
 function isForcedMobile() {
