@@ -623,3 +623,10 @@ body.force-mobile .mob-shell{
   .modal-mobshare .modal-title{ font-size: 28px; }
   .modal-mobshare .btn-light{ font-size: 18px; padding: 16px 18px; }
 }
+/* Hide the original mobile round buttons */
+.mob-actions,
+.mob-buttons,
+.mob-cta,
+.mob-btn-row {
+  display: none !important;
+}
